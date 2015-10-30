@@ -307,7 +307,8 @@ main {
 }
 
 .weather__today__image {
-  vertical-align: middle
+  vertical-align: middle;
+  border-radius: 25px;
 }
 
 .weather__today__temp {
@@ -331,6 +332,7 @@ main {
 
 .weather__next__image {
   width: 100%;
+  border-radius: 25px;
 }
 
 
