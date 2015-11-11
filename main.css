@@ -99,7 +99,7 @@ ul {
 
 .nav__item {
   box-sizing: border-box;
-  display: inline-block;
+  display: block;
   width: 24%;
   text-align: center;
   line-height: 24px;
