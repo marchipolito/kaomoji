@@ -50,6 +50,7 @@ ul {
   min-height: 56px;
   width: 100%;
   transition: min-height 0.3s;
+  margin-bottom: 10px
 }
 
 .header__inner {
@@ -62,13 +63,13 @@ ul {
   height: 72px;
   margin-right: 1em;
   vertical-align: top;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .header__title {
   font-weight: 300;
   font-size: 4em;
-  margin: 0.75em 0.25em;
+  margin: 0.4em;
   display: inline-block;
   color: #212121;
 }
@@ -86,10 +87,6 @@ ul {
  
 }
 
-.nav2.open {
-  -webkit-transform: translate(0,0);
-  transform: translate(0,0);
-}
 
 .nav__list {
   width: 100%;
@@ -122,6 +119,13 @@ ul {
 *
 *
 */
+/*popout after click */
+.burger {
+  display:inline-block;
+  right:0;
+  position:absolute;
+  padding:2.5em;
+}
 .nav2{
     height: 100%;
     width: 300px;
@@ -130,6 +134,12 @@ ul {
   transform: translate (-300px 0);
   transition: transform 0.3s ease;
   background-color: black;
+  z-index: 10;
+}
+
+.nav2.open {
+  -webkit-transform: translate(0,0);
+  transform: translate(0,0);
 }
 
 
