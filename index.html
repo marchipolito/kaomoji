@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Marc Hipolito</title>
+    <title>Brighton Times</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
     
@@ -17,8 +16,13 @@
     }
     @media screen and (min-width:320px) and (max-width: 599px){
       .header__title {
-        font-size: 1.9em;
-        margin: 1.5em 0.25em;
+        font-size: 2em;
+        margin-left: 0px;
+        vertical-align: bottom;
+      }
+      .header__logo {
+        height: 48px;
+        margin-top: 7px;
       }
     }
     @media screen and (min-width: 600px){
@@ -33,15 +37,15 @@
           order: 0;
         }
         .weather {
-          width: 50%;
-          order: 1;
+          width: 40%;
+          order: 3;
         }
         .top-news {
           width:50%;
-          order: 3;
+          order: 1;
         }
         .scores {
-          width: 50%;
+          width: 60%;
           order: 2;
         }
         .recent-news {
@@ -68,7 +72,7 @@
         <li class="nav__item"><a href="#">Blog</a></li>
       </ul>
     </nav>
-    <section class="content">
+    
     <header class="header">
       <div class="header__inner">
         <img class="header__logo" src="http://placeimg.com/100/100/arch" alt="iconic view of a cityscape">
@@ -81,9 +85,9 @@
       </div>
     </header>
     <main>
-    <div class="container">
+    <section class="content">
       <section class="hero">
-        <img src="http://placeimg.com/800/600/people/sepia" width="100%">
+        <!--<img src="http://placeimg.com/800/600/grayscale" width="100%">-->
         <article class="description">
           <h2>Absolutely astonishing breaking news!</h2>
           <p>Organic raw denim Vice keffiyeh lomo Kickstarter art lomo Kickstarter art four loko. Organic raw denim Vice keffiyeh lomo Kickstarter art lomo Kickstarter art four loko.</p>
@@ -222,7 +226,6 @@
           </li>
         </ul>
       </section>
-    </div>
     </section>
     <footer>
       <ul>
