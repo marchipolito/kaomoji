@@ -1,0 +1,9 @@
+.wrap {
+	height: 100%;
+	margin: auto;
+	display: flex;
+}
+#splash {
+	display: flex;
+	margin: auto;
+}
