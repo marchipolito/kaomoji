@@ -7,3 +7,12 @@
 	display: flex;
 	margin: auto;
 }
+.splash {
+	margin: auto;
+}
+#splash > a > img {
+	width: 250px;
+}
+.logo {
+	width: 36px;
+}
