@@ -1,3 +1,9 @@
+a {
+	color: white;
+}
+a:focus, a:hover {
+	color: red;
+}
 .wrap {
 	height: 100%;
 	margin: auto;
@@ -15,4 +21,8 @@
 }
 .logo {
 	width: 36px;
+}
+
+.is-dropdown-submenu {
+	background: #656262;
 }
