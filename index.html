@@ -53,6 +53,9 @@
     $(document).ready(function(){
         $(".splash").click(function(){
             $(".wrap").fadeToggle(1000);
+            $('body').delay(1000).queue(function(s){
+              $(this).css("overflow","auto");
+            });
         });
     });
   </script>
