@@ -52,19 +52,9 @@
 .mdl-layout__header-row .mdl-navigation__link {
 	color: rgb(66,66,66);
 }
-/*.is-active:after {
-	font-weight: bold;
-	content: "";
-	width: 70%;
-	height: 2px;
-	display: block;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	background-color: rgb(255,64,129);
-	left: 15%;
-
-}*/
+.mdl-mini-footer {
+	padding: 10px 16px;
+}
 
 body > div > div > header > div.mdl-layout__tab-bar-container > div.mdl-layout__tab-bar-button.mdl-layout__tab-bar-left-button {
 	display: none;
