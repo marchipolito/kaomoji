@@ -22,10 +22,15 @@
 		float: right;
 	}
 
-	.wrapper {
+	.wrapper{
+		height:100%;
+	}
+
+	.mojiWrapper {
 		height:100%;
 		max-width: 50%;
 		margin:auto;
+		display: grid;
 
 	}
 
@@ -41,10 +46,14 @@
 		text-align: left;
 		padding-left: 30px;
 	}
+
+	body {
+		background: lightgray;
+	}
 </style>
-<body>
-	<div ng-app="myApp" ng-controller="myCtrl">
-		<div class="wrapper">
+<body class="wrapper">
+	<div class="wrapper" ng-app="myApp" ng-controller="myCtrl">
+		<div class="mojiWrapper">
 			<div class = "row" ng-repeat="x in moji">
 				<p>{{x}}</p>
 				<div class="btnWrap">
@@ -89,7 +98,7 @@
 <script>
 	var app=angular.module('myApp',[]);
 	app.controller('myCtrl',function($scope){
-		$scope.moji = ["ᕕ( ᐛ )ᕗ","(•̀ᴗ•́)و ̑̑","ಠ_ಠ","ლ(ಠ益ಠლ)","ᕙ(⇀‸↼‶)ᕗ","(;´༎ຶД༎ຶ`)","(ง •̀_•́)ง","(－‸ლ)","(ÒДÓױ)"]
+		$scope.moji = ["ᕕ( ᐛ )ᕗ","(•̀ᴗ•́)و ̑̑","ಠ_ಠ","(⊙＿⊙')","ლ(ಠ益ಠლ)","ᕙ(⇀‸↼‶)ᕗ","(;´༎ຶД༎ຶ`)","(ง •̀_•́)ง","(－‸ლ)","(ÒДÓױ)"]
 	});
 </script>	
 </footer>
