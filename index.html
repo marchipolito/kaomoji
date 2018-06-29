@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Clip Moji</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-red.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.1/clipboard.min.js"></script>
+</head>
+<style>
+	.row {
+		width:100%;
+		background-color: lightgray;
+		padding-top: 8px;
+		padding-bottom: 8px;
+		display:flex;
+	}
+
+	.copyBtn {
+		float: right;
+	}
+
+	.wrapper {
+		height:100%;
+		max-width: 50%;
+		margin:auto;
+
+	}
+
+	.btnWrap {
+		width:50%;
+		margin:auto;
+		padding-right:30px;
+	}
+
+	p {
+		width:50%;
+		margin:auto;
+		text-align: left;
+		padding-left: 30px;
+	}
+</style>
+<body>
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<div class="wrapper">
+			<div class = "row" ng-repeat="x in moji">
+				<p>{{x}}</p>
+				<div class="btnWrap">
+					<div data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect copyBtn" onclick="copy()">
+						<div>Copy</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+<footer>
+
+<!-- This changes the copy button color on click -->
+<script>
+    // var bgc = $('.mdl-button').css('background-color');
+    var timer = 1000;
+    function copy() {
+        $('.copyBtn').css({'background-color':'green'});
+        setTimeout(function(){
+            $('.copyBtn').css({'background-color':'rgb(255,82,82)'});
+        },timer);
+    }
+</script>
+
+<!-- Copy to clipboard -->
+<script>
+	new Clipboard('.copyBtn');
+</script>
+
+<!-- <script>
+	new Clipboard('.copyBtn',{
+        text: function(trigger) {
+            return trigger.previousElementSibling;
+        }
+    });
+</script> -->
+
+<!-- This adds new emoji to use. Just add to $scope.moji -->
+<script>
+	var app=angular.module('myApp',[]);
+	app.controller('myCtrl',function($scope){
+		$scope.moji = ["ᕕ( ᐛ )ᕗ","(•̀ᴗ•́)و ̑̑","ಠ_ಠ","ლ(ಠ益ಠლ)","ᕙ(⇀‸↼‶)ᕗ","(;´༎ຶД༎ຶ`)","(ง •̀_•́)ง","(－‸ლ)","(ÒДÓױ)"]
+	});
+</script>	
+</footer>
+</html>
+
+
