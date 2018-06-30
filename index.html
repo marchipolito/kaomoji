@@ -28,7 +28,7 @@
 
 	.mojiWrapper {
 		height:100%;
-		max-width: 50%;
+		max-width: 45%;
 		margin:auto;
 		display: grid;
 
@@ -49,6 +49,12 @@
 
 	body {
 		background: lightgray;
+	}
+
+	@media screen and (max-width: 650px) {
+		.mojiWrapper {
+			max-width:80%;
+		}
 	}
 </style>
 <body class="wrapper">
