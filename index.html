@@ -63,8 +63,7 @@
 			<div class = "row" ng-repeat="x in moji">
 				<p>{{x}}</p>
 				<div class="btnWrap">
-					<div data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect copyBtn" onclick="copy()">
-						<div>Copy</div>
+					<div data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect copyBtn" onclick="copy()">Copy
 					</div>
 				</div>
 			</div>
@@ -76,13 +75,26 @@
 <footer>
 
 <!-- This changes the copy button color on click -->
-<script>
+<!-- <script>
     // var bgc = $('.mdl-button').css('background-color');
     var timer = 1000;
     function copy() {
         $('.copyBtn').css({'background-color':'green'});
         setTimeout(function(){
             $('.copyBtn').css({'background-color':'rgb(255,82,82)'});
+        },timer);
+    }
+</script> -->
+
+
+<!-- This changes the copy button color on click -->
+<script>
+    // var bgc = $('.mdl-button').css('background-color');
+    var timer = 1000;
+    function copy() {
+        var target= $(event.target).parent().css({'background-color':'green'});
+        setTimeout(function(){
+            target.css({'background-color':'rgb(255,82,82)'});
         },timer);
     }
 </script>
