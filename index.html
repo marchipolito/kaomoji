@@ -38,6 +38,27 @@
 		width:50%;
 		margin:auto;
 		padding-right:30px;
+		display: flex;
+	}
+
+	.float {
+		/*width: 30px;
+		height: 30px;*/
+		position: fixed;
+		left: 20px;
+		top: 20px;
+		/*top: 20px;
+		border-radius: 0 10px 10px 0;
+		background: rgb(255,82,82);*/
+	}
+
+	.dialogTitle {
+		text-align: center;
+		font-size: x-large;
+	}
+
+	.hidden {
+		display:none;
 	}
 
 	p {
@@ -58,17 +79,45 @@
 	}
 </style>
 <body class="wrapper">
-	<div class="wrapper" ng-app="myApp" ng-controller="myCtrl">
-		<div class="mojiWrapper">
-			<div class = "row" ng-repeat="x in moji">
-				<p>{{x}}</p>
-				<div class="btnWrap">
-					<div data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect copyBtn" onclick="copy()">Copy
-					</div>
-				</div>
+
+<!-- Show Add Custom Dialog-->
+<button id="show-dialog" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float">
+  <i class="material-icons">add</i>
+</button>
+<div class="wrapper" ng-app="myApp" ng-controller="myCtrl">
+
+<!-- Custom Dialog contents for adding custom text -->
+<dialog class="mdl-dialog">
+	<div class="dialogTitle">Enter your own string</div>
+	<div class="mdl-dialog__content">
+	  <div class="mdl-textfield mdl-js-textfield">
+		    <input ng-model="newStrings" class="mdl-textfield__input" type="text" id="newStrings">
+		    <label class="mdl-textfield__label" for="newStrings">Text...</label>
+	  </div>
+	  <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+		<button type="submit" class="mdl-button add" ng-click="addNew(newStrings)">Add</button>
+		<button type="button" class="mdl-button close">Close</button>
+	  </div>
+	</div>
+</dialog>
+
+	<div class="mojiWrapper">
+		<div class = "row" ng-repeat="x in moji track by $index">
+			<p>{{x}}</p>
+			<div class="btnWrap">
+				<!-- <div data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect copyBtn" onclick="copy()">Copy
+				</div> -->
+				<!-- Colored FAB button with ripple -->
+				<button data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored copyBtn" onclick="copy()">
+			  	<i class="material-icons">file_copy</i>
+				<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored" ng-click="remove($index)">
+			  	<i class="material-icons">clear</i>
+			  	<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored hidden">
+			  	<i class="material-icons">edit</i>
 			</div>
 		</div>
 	</div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
@@ -84,6 +133,7 @@
             target.css({'background-color':'rgb(255,82,82)'});
         },timer);
     }
+
 </script>
 
 <!-- Copy to clipboard -->
@@ -121,8 +171,38 @@
 		"('◉⌓◉’)",
 		"(๑˃̵ᴗ˂̵)",
 		"( ͡° ͜ʖ ͡°)"]
+
+// This deletes items
+		$scope.remove = function(index){
+			$scope.moji.splice(index,1);
+		}
+
+		$scope.addNew = function(newString){
+			$scope.moji.push(newString);
+			$scope.newStrings = null;
+		}
 	});
-</script>	
+
+</script>
+
+<!-- Open and Close customization dialog -->
+<script>
+    var dialog = document.querySelector('dialog');
+    var showDialogButton = document.querySelector('#show-dialog');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButton.addEventListener('click', function() {
+      dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
+
+    dialog.querySelector('.add').addEventListener('click', function() {
+      dialog.close();
+    });
+  </script>
 </footer>
 </html>
 
