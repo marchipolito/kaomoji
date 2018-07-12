@@ -64,6 +64,10 @@
 	.tester {
 		top:100px;
 	}
+	.toastText {
+		margin: auto;
+		color: rgb(255,82,82);
+	}
 
 	p {
 		width:50%;
@@ -88,15 +92,17 @@
 <button id="show-dialog" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float">
   <i class="material-icons">add</i>
 </button>
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="show-dialog">Add your own!</div>
 
 <!-- <button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester" ng-click="clearData()">
   <i class="material-icons">delete</i>
 </button> -->
 
 <div class="wrapper" ng-app="myApp" ng-controller="myCtrl">
-<button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester" ng-click="clearData()">
+<button id="reset" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester" ng-click="clearData()">
   <i class="material-icons">delete</i>
 </button>
+<div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="reset">Reset back to defaults</div>
 <!-- Custom Dialog contents for adding custom text -->
 <dialog class="mdl-dialog customDialog">
 	<div class="dialogTitle">Enter your own string</div>
@@ -135,22 +141,41 @@
 				<!-- <div data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect copyBtn" onclick="copy()">Copy
 				</div> -->
 				<!-- Colored FAB button with ripple -->
-				<button data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored copyBtn" onclick="copy()">
+				<button data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored copyBtn" onclick="copy();toast()">
 			  	<i class="material-icons">file_copy</i>
 				<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored" ng-click="remove($index)">
 			  	<i class="material-icons">clear</i>
 			  	<!-- <button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored editBtn" onclick="edit()">
 			  	<i class="material-icons">edit</i> -->
-			  	<button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored editBtn" ng-click="edit($index)">
+			  	<button id="editBtn" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored editBtn" ng-click="edit($index)">
 			  	<i class="material-icons">edit</i>
 			</div>
 		</div>
 	</div>
 </div>
 
+<!-- Show toast -->
+<div id="toast" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text toastText"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 <footer>
+
+<!--This shows the toast message  -->
+<script>
+	function toast () {
+		showToast = document.querySelector('#toast');
+		var data = {
+	      message: 'Copied',
+	      timeout: 1000,
+	      // actionText: 'Undo'
+    	};
+    	showToast.MaterialSnackbar.showSnackbar(data);
+	}
+</script>
 
 <!-- This changes the copy button color on click -->
 <script>
