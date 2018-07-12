@@ -61,6 +61,10 @@
 		display:none;
 	}
 
+	.tester {
+		top:100px;
+	}
+
 	p {
 		width:50%;
 		margin:auto;
@@ -84,10 +88,15 @@
 <button id="show-dialog" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float">
   <i class="material-icons">add</i>
 </button>
+
+<!-- <button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester">
+  <i class="material-icons">add</i>
+</button> -->
+
 <div class="wrapper" ng-app="myApp" ng-controller="myCtrl">
 
 <!-- Custom Dialog contents for adding custom text -->
-<dialog class="mdl-dialog">
+<dialog class="mdl-dialog customDialog">
 	<div class="dialogTitle">Enter your own string</div>
 	<div class="mdl-dialog__content">
 	  <div class="mdl-textfield mdl-js-textfield">
@@ -97,6 +106,22 @@
 	  <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
 		<button type="submit" class="mdl-button add" ng-click="addNew(newStrings)">Add</button>
 		<button type="button" class="mdl-button close">Close</button>
+	  </div>
+	</div>
+</dialog>
+
+<!-- Edit Dialog -->
+<dialog class="mdl-dialog editDialog">
+	<div class="dialogTitle">Edit your string</div>
+	<div class="mdl-dialog__content">
+	  <div class="mdl-textfield mdl-js-textfield">
+		    <input ng-model="editStrings" class="mdl-textfield__input" type="text" id="editStrings">
+		    <label class="mdl-textfield__label" for="editStrings"></label>
+	  </div>
+	  <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+		<!-- <button id="saveBtn" type="submit" class="mdl-button add" ng-click="save($index)">Update</button> -->
+		<button id="saveBtn" type="submit" class="mdl-button add">Update</button>
+		<button type="button" class="mdl-button close" ng-click="close()">Close</button>
 	  </div>
 	</div>
 </dialog>
@@ -112,7 +137,9 @@
 			  	<i class="material-icons">file_copy</i>
 				<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored" ng-click="remove($index)">
 			  	<i class="material-icons">clear</i>
-			  	<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored hidden">
+			  	<!-- <button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored editBtn" onclick="edit()">
+			  	<i class="material-icons">edit</i> -->
+			  	<button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored editBtn" ng-click="edit($index)">
 			  	<i class="material-icons">edit</i>
 			</div>
 		</div>
@@ -170,24 +197,52 @@
 		"(ÒДÓױ)",
 		"('◉⌓◉’)",
 		"(๑˃̵ᴗ˂̵)",
-		"( ͡° ͜ʖ ͡°)"]
+		"( ͡° ͜ʖ ͡°)"]	
 
 // This deletes items
 		$scope.remove = function(index){
 			$scope.moji.splice(index,1);
 		}
 
+// Adds to the "moji" array
 		$scope.addNew = function(newString){
 			$scope.moji.push(newString);
 			$scope.newStrings = null;
 		}
+
+		$scope.edit = function(index) {
+			var editDialog = document.querySelector ('.editDialog');
+			editDialog.showModal();
+			var placeholder = $scope.moji[index];
+			$scope.editStrings = placeholder;
+			// console.log(index);
+			// console.log(placeholder);
+
+			saveBtn = document.querySelector('#saveBtn');
+			saveBtn.addEventListener('click',function(){
+				var update = $scope.editStrings;
+				// console.log('hi ' + update);
+				// console.log(index);
+				$scope.moji[index] = update;
+				$scope.$apply();
+				index = null;
+				$scope.close();
+			});
+		}
+
+
+		$scope.close = function() {
+			var modal = document.querySelector('.editDialog');
+			modal.close();
+		}
+
 	});
 
 </script>
 
 <!-- Open and Close customization dialog -->
 <script>
-    var dialog = document.querySelector('dialog');
+    var dialog = document.querySelector('.customDialog');
     var showDialogButton = document.querySelector('#show-dialog');
     if (! dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
@@ -203,6 +258,7 @@
       dialog.close();
     });
   </script>
+
 </footer>
 </html>
 
