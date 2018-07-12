@@ -215,6 +215,8 @@
 // This deletes items
 		$scope.remove = function(index){
 			$scope.moji.splice(index,1);
+			data = $scope.moji;
+			localStorage.setItem('data',JSON.stringify(data));
 		}
 
 // Adds to the "moji" array
