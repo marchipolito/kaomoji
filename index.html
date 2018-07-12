@@ -89,12 +89,14 @@
   <i class="material-icons">add</i>
 </button>
 
-<!-- <button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester">
-  <i class="material-icons">add</i>
+<!-- <button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester" ng-click="clearData()">
+  <i class="material-icons">delete</i>
 </button> -->
 
 <div class="wrapper" ng-app="myApp" ng-controller="myCtrl">
-
+<button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester" ng-click="clearData()">
+  <i class="material-icons">delete</i>
+</button>
 <!-- Custom Dialog contents for adding custom text -->
 <dialog class="mdl-dialog customDialog">
 	<div class="dialogTitle">Enter your own string</div>
@@ -256,6 +258,11 @@
 			modal.close();
 		}
 
+		$scope.clearData = function() {
+			localStorage.clear();
+			location.reload();
+		}
+
 	});
 
 </script>
@@ -278,6 +285,12 @@
       dialog.close();
     });
   </script>
+
+  <!-- <script>
+  	function clearData() {
+  		
+  	}
+  </script> -->
 
 </footer>
 </html>
