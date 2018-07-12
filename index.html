@@ -172,6 +172,9 @@
 <script>
 	var app=angular.module('myApp',[]);
 	app.controller('myCtrl',function($scope){
+
+		if (localStorage.getItem('data') === null) {
+
 		$scope.moji = [
 		"ᕕ( ᐛ )ᕗ",
 		"(•̀ᴗ•́)و ̑̑",
@@ -197,7 +200,17 @@
 		"(ÒДÓױ)",
 		"('◉⌓◉’)",
 		"(๑˃̵ᴗ˂̵)",
-		"( ͡° ͜ʖ ͡°)"]	
+		"( ͡° ͜ʖ ͡°)"]
+
+		} else {
+
+			$scope.moji = JSON.parse(localStorage.getItem('data'));
+		}
+		
+
+	var data = $scope.moji;
+	localStorage.setItem('data',JSON.stringify(data));
+	console.log(JSON.parse(localStorage.getItem('data')));	
 
 // This deletes items
 		$scope.remove = function(index){
@@ -208,6 +221,8 @@
 		$scope.addNew = function(newString){
 			$scope.moji.push(newString);
 			$scope.newStrings = null;
+			data = $scope.moji;
+			localStorage.setItem('data',JSON.stringify(data));
 		}
 
 		$scope.edit = function(index) {
@@ -225,6 +240,9 @@
 				// console.log(index);
 				$scope.moji[index] = update;
 				$scope.$apply();
+				data = $scope.moji;
+				localStorage.setItem('data',JSON.stringify(data));
+				console.log(JSON.parse(localStorage.getItem('data')));
 				index = null;
 				$scope.close();
 			});
