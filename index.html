@@ -30,14 +30,26 @@
 		height:100%;
 		max-width: 45%;
 		margin:auto;
-		display: grid;
+		/*display: grid;*/
 
 	}
+
+	.textWrap {
+		width:50%;
+	}	
+
+	.textPreview {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		padding-left: 30px;
+	}
+
 
 	.btnWrap {
 		width:50%;
 		margin:auto;
-		padding-right:30px;
+		/*padding-right:30px;*/
 		display: flex;
 	}
 
@@ -70,10 +82,11 @@
 	}
 
 	p {
-		width:50%;
+		/*width:50%;*/
 		margin:auto;
 		text-align: left;
-		padding-left: 30px;
+		/*padding-left: 30px;*/
+		word-wrap: break-word;
 	}
 
 	body {
@@ -94,15 +107,12 @@
 </button>
 <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="show-dialog">Add your own!</div>
 
-<!-- <button id="test" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester" ng-click="clearData()">
-  <i class="material-icons">delete</i>
-</button> -->
-
 <div class="wrapper" ng-app="myApp" ng-controller="myCtrl">
 <button id="reset" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored float tester" ng-click="clearData()">
   <i class="material-icons">refresh</i>
 </button>
 <div class="mdl-tooltip mdl-tooltip--large mdl-tooltip--right" for="reset">Reset back to defaults</div>
+
 <!-- Custom Dialog contents for adding custom text -->
 <dialog class="mdl-dialog customDialog">
 	<div class="dialogTitle">Enter your own string</div>
@@ -134,9 +144,29 @@
 	</div>
 </dialog>
 
+<!-- Preview Dialog -->
+<dialog class="mdl-dialog previewDialog">
+	<div class="dialogTitle">Your string</div>
+	<div class="mdl-dialog__content">
+	  <div class="mdl-textfield mdl-js-textfield">
+		    <input ng-model="editStrings" class="mdl-textfield__input" type="text" id="editStrings">
+		    <label class="mdl-textfield__label" for="editStrings"></label>
+	  </div>
+	  <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+		<!-- <button id="saveBtn" type="submit" class="mdl-button add" ng-click="save($index)">Update</button> -->
+		<!-- <button id="saveBtn" type="submit" class="mdl-button add">Update</button> -->
+		<button type="button" class="mdl-button close" ng-click="closeMe()">Close</button>
+	  </div>
+	</div>
+</dialog>
+
+
 	<div class="mojiWrapper">
 		<div class = "row" ng-repeat="x in moji track by $index">
-			<p>{{x}}</p>
+			<div class="textWrap">
+				<!-- <p class="textPreview" onmouseover="hover(this)" onmouseout="hoverOut(this)">{{x}}</p> -->
+				<p class="textPreview" ng-mouseover="hover($index)">{{x}}</p>
+			</div>
 			<div class="btnWrap">
 				<!-- <div data-clipboard-text={{x}} class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect copyBtn" onclick="copy()">Copy
 				</div> -->
@@ -283,9 +313,27 @@
 			modal.close();
 		}
 
+		$scope.closeMe = function() {
+			var testing = document.querySelector('.previewDialog');
+			testing.close();
+			console.log('clicked');
+		}
+
 		$scope.clearData = function() {
 			localStorage.clear();
 			location.reload();
+		}
+
+		$scope.hover = function(index) {
+			var innerText = $scope.moji[index];
+			$scope.editStrings = innerText;
+			var len = innerText.length;
+			var previewDialog = document.querySelector('.previewDialog');
+			console.log(len);
+			if (len > 50) {
+				previewDialog.showModal();
+			}
+			// console.log(innerText);
 		}
 
 	});
@@ -309,13 +357,24 @@
     dialog.querySelector('.add').addEventListener('click', function() {
       dialog.close();
     });
-  </script>
+</script>
 
-  <!-- <script>
-  	function clearData() {
-  		
-  	}
-  </script> -->
+<!-- Testing hover preview of long text -->
+<!-- <script>
+	var test = document.querySelector('.previewDialog');
+	function hover (x) {
+		var text = document.querySelector('.textPreview').textContent;
+		var innerText = document.querySelector('.textPreview').textContent;
+		var len= innerText.length;
+		console.log(len);
+		console.log(text);
+	}	
+
+	function hoverOut(x) {
+		x.style.overflow = "hidden"
+	}
+</script> -->
+
 
 </footer>
 </html>
