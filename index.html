@@ -45,6 +45,20 @@
 		padding-left: 30px;
 	}
 
+	.previewDialog {
+		min-width: 50%;
+		max-width: 75%;
+	}
+
+	.dialogContent {
+		font-size: 16px;
+		font-family: "Helvetica","Arial", sans-serif;
+		text-align: center;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		word-wrap: break-word;
+	}
+
 
 	.btnWrap {
 		width:50%;
@@ -148,10 +162,11 @@
 <dialog class="mdl-dialog previewDialog">
 	<div class="dialogTitle">Your string</div>
 	<div class="mdl-dialog__content">
-	  <div class="mdl-textfield mdl-js-textfield">
-		    <input ng-model="editStrings" class="mdl-textfield__input" type="text" id="editStrings">
+		<div class="dialogContent" ng-model="editStrings" id="editStrings">{{editStrings}}</div>
+	  <!-- <div class="mdl-textfield mdl-js-textfield">
+		    <input ng-model="editStrings" class="mdl-textfield__input" type="text" id="editStrings">		   
 		    <label class="mdl-textfield__label" for="editStrings"></label>
-	  </div>
+	  </div> -->
 	  <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
 		<!-- <button id="saveBtn" type="submit" class="mdl-button add" ng-click="save($index)">Update</button> -->
 		<!-- <button id="saveBtn" type="submit" class="mdl-button add">Update</button> -->
