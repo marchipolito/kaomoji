@@ -72,7 +72,11 @@
         // as_url = "//tags.tiqcdn.com/" + environment + "/stevethurner/main/prod/utag.js"
         // as_url = "//tags.tiqcdn.com/" + environment + "/tealium-nt/marcnew2/prod/utag.js"
       </script>
-
+      <script>
+      function test() {
+        utag.gdpr.showConsentPreferences();
+      }
+      </script>
       <script type="text/javascript">
          var utag_data = {
          page_lang : "ja",
@@ -167,10 +171,19 @@
          <div id="twit"></div>
          <div id="test"></div>
          <div id="modal"></div>
+         <p id="version"></p>
+         <button onclick="test()">click</button>
+         <button onclick="version()">version</button>
          <script type="text/javascript">
             $( "#test-banner" ).html( environment.toUpperCase() + " - AS Regression Test" );
             $( "#test-header" ).html( "marc.com HOME Page - " + environment.toUpperCase());
          </script>
+         <script>
+      function version() {
+        var sss = utag.cfg.v;
+        console.log(sss);
+      }
+      </script>
       </div>
    </body>
 </html>
