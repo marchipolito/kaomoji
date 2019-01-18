@@ -126,10 +126,6 @@
 </head>
 
 <body onload="getInfo()">
-  <!-- <script type="text/javascript">
-         var i = "this is my test i";
-         var b = "this is my test b";
-      </script> -->
   <script type="text/javascript">var vars = [], hash;</script>
   <script type="text/javascript">
     (function () {
@@ -152,23 +148,30 @@
   <script type="text/javascript">var environment = ""; var as_url = ""</script>
   <script type="text/javascript">
     var env_query = vars['environment'];
+    var profile_query = vars['profile'];
     if (env_query != undefined) {
       environment = env_query.toLowerCase();
     } else {
       environment = "Undefined";
     }
+    if (profile_query != undefined) {
+      profile = profile_query.toLowerCase();
+    } else {
+      profile = "Undefined";
+    }
 
-    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/rules/prod/utag.js"
-    as_url = "//tags.tiqcdn.com/" + environment + "/tealium.test/loadruletest/prod/utag.js"
-    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/main/prod/utag.js"
-    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/loadrule/prod/utag.js"
-    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/master2/prod/utag.js"
-    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/inherit/prod/utag.js"
-    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/tagchecker/prod/utag.js"
-    // as_url = "//tags.tiqcdn.com/" + environment + "/marcnew/main/prod/utag.js" 
-    // as_url = "//tags.tiqcdn.com/" + environment + "/tealium-nt/marcnew2/prod/utag.js"
-    // as_url = "//tags.tiqcdn.com/" + environment + "/tealium-nt/marcnew4/prod/utag.js"
-    // as_url = "//tags.tiqcdn.com/" + environment + "/tealium-nt/marcnew5/prod/utag.js"
+    as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/" + profile + "/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/tealium.test/loadruletest/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/tealium.test/" + profile + "/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/main/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/loadrule/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/master2/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/inherit/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/newmarc/tagchecker/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/marcnew/main/prod/utag.js" ;
+    // as_url = "//tags.tiqcdn.com/" + environment + "/tealium-nt/marcnew2/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/tealium-nt/marcnew4/prod/utag.js";
+    // as_url = "//tags.tiqcdn.com/" + environment + "/tealium-nt/marcnew5/prod/utag.js";
   </script>
   <script>
     function test() {
@@ -257,6 +260,7 @@
     <div id="test-banner" class="hBox" style="background-color: teal; color: white; text-indent: 50px; line-height: 1.8; font-size: 30px;"></div>
     <div class="textBox">
       <h1 id="test-header"></h1>
+      <p id="test-profile"></p>
       <p id="test-path">Test page for audiencestream/regression</p>
       <span id="cmod"></span>
     </div>
@@ -298,13 +302,20 @@
     <script type="text/javascript">
       $("#test-banner").html(environment.toUpperCase() + " - AS Regression Test");
       $("#test-header").html("marc.com HOME Page - " + environment.toUpperCase());
+
+      if (profile!="Undefined") {
+        document.getElementById("test-profile").innerHTML = "Test Profile: " + profile;
+      } else {
+        document.getElementById("test-profile").innerHTML = "ERROR: Missing Profile Parameter";
+      }
+
     </script>
     <script>
     // this gets the utag version
       function getInfo() {
         var sss = utag.cfg.v;
         console.log(sss);
-        document.getElementById("version").innerHTML = "Current uTag Version: " + sss;
+        document.getElementById("version").innerHTML = sss;
 
         // This gets the window dimensions
         var h = window.innerHeight;
